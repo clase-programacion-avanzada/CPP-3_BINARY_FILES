@@ -10,7 +10,14 @@
 *.lo
 *.o
 *.obj
-
+0_how_binary_files_work/0_how_binary_files_work
+1_how_binary_files_writing_reading/1_how_binary_files_writing_reading
+2_binary_files_movies/2_binary_files_movies
+*.dSYM
+*.bin
+output.txt
+tempCodeRunnerFile.cpp
+tempCodeRunnerFile.h
 # Precompiled Headers
 *.gch
 *.pch
