@@ -12,7 +12,7 @@ using namespace std;
 
 
 bool writeFile(string fileName, List<Movie> movies, unsigned int mode);
-List<Movie> readFile(string fileName, unsigned int mode);
+List<MovieBin> readFile(string fileName, unsigned int mode);
 MovieBin2 readFileWrongStruct(string fileName, unsigned int mode);
 
 void printMovie(Movie movie);
@@ -58,11 +58,12 @@ int main(){
 
     //We will read the binary file and print the movies
     cout << "Reading binary file" << endl;
-    List<Movie> moviesFromBinaryFile = readFile(inputFileNameBinary, ios::in | ios::binary);
+    List<MovieBin> moviesFromBinaryFile = readFile(inputFileNameBinary, ios::in | ios::binary);
 
+    List<Movie> moviesFromBinaryFileConverted = getMoviesFromMoviesBin(moviesFromBinaryFile);
     cout << "Printing first and last movie from binary file " << endl;
-    printMovie(moviesFromBinaryFile.get(0));
-    printMovie(moviesFromBinaryFile.get(moviesFromBinaryFile.size - 1));
+    printMovie(moviesFromBinaryFileConverted.get(0));
+    printMovie(moviesFromBinaryFileConverted.get(moviesFromBinaryFile.size - 1));
 
 
 }
@@ -72,7 +73,7 @@ The 'fileName' parameter specifies the name of the file to write to.
 The 'movies' parameter is the list of movies to write.
 The 'mode' parameter specifies the mode in which to open the file. 
     By default, it's set to 'ios::out', which means the file will be opened for output.*/
-bool writeFile(string fileName, List<Movie> movies, unsigned int mode = ios::out) {
+bool writeFile(string fileName, List<Movie> movies, unsigned int mode = ios::out ) {
 
     // Create a file stream object.
     fstream file;
@@ -121,23 +122,23 @@ bool writeFile(string fileName, List<Movie> movies, unsigned int mode = ios::out
     return true;
 }
 
-List<Movie> readFile(string fileName, unsigned int mode = ios::in ) {
+List<MovieBin> readBinaryFile(string fileName) {
     // Create a file stream object.
     fstream file;
 
     cout << "Opening file " << fileName << endl;
     // Open the file with the specified mode.
-    file.open(fileName, mode);
+    file.open(fileName, ios::in | ios::binary);
 
     // If the file failed to open, return an empty list.
     if (file.fail()) {
-        return List<Movie>();
+        return List<MovieBin>();
     }
 
     cout << "File opened successfully!!!" << endl << endl;
 
     // Create a list to store the movies.
-    List<Movie> movies;
+    List<MovieBin> movies;
 
     // Create a MovieBin object to store the movie data.
     MovieBin movieBin;
@@ -146,11 +147,8 @@ List<Movie> readFile(string fileName, unsigned int mode = ios::in ) {
     // While there are still movies to read...
     while (file.read((char*)&movieBin, sizeof(MovieBin))) {
         
-        // Convert the MovieBin object to a Movie object.
-        Movie movie = toMovie(movieBin);
-
         // Add the movie to the list.
-        movies.add(movie);
+        movies.add(movieBin);
     }
 
     cout << "Closing file" << endl;

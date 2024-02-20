@@ -12,7 +12,7 @@ struct MovieBin {
     int id;
     int year;
     int rating;
-    char title[100];
+    char title[50];
 
     MovieBin() {
         id = 0;
@@ -57,7 +57,7 @@ struct Movie{
 
 struct MovieBin2 {
     
-    char title[100];
+    char title[50];
     int id;
     int year;
     int rating;

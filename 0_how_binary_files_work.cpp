@@ -11,8 +11,8 @@
 using namespace std;
 
 
-bool writeFile(string fileName, List<Movie> movies, unsigned int mode);
-List<Movie> readFile(string fileName, unsigned int mode);
+bool writeFile(string fileName, List<MovieBin> movies, unsigned int mode);
+List<MovieBin> readFile(string fileName, unsigned int mode);
 MovieBin2 readFileWrongStruct(string fileName, unsigned int mode);
 
 void printMovie(Movie movie);
@@ -93,12 +93,14 @@ int main(){
     movie.rating = 5;
     movie.title = "Movie 1";
 
-    List<Movie> movies;
-    movies.add(movie);
+    MovieBin movieBin = toMovieBin(movie);
+
+    List<MovieBin> moviesBin;
+    moviesBin.add(movieBin);
 
     bool fileWasWritten = writeFile(
         "example_writing_one_movie_binary.bin", 
-        movies, 
+        moviesBin, 
         ios::out | ios::binary);
 
     if (!fileWasWritten) {
@@ -147,7 +149,7 @@ The 'fileName' parameter specifies the name of the file to write to.
 The 'movies' parameter is the list of movies to write.
 The 'mode' parameter specifies the mode in which to open the file. 
     By default, it's set to 'ios::out', which means the file will be opened for output.*/
-bool writeFile(string fileName, List<Movie> movies, unsigned int mode = ios::out) {
+bool writeFile(string fileName, List<MovieBin> moviesBin, unsigned int mode = ios::out | ios::binary) {
 
     // Create a file stream object.
     fstream file;
@@ -163,18 +165,18 @@ bool writeFile(string fileName, List<Movie> movies, unsigned int mode = ios::out
 
     cout << "File opened successfully!!!" << endl << endl;
 
-    for (int i = 0; i < movies.size; i++) {
+    for (int i = 0; i < moviesBin.size; i++) {
         // Convert the Movie object to a MovieBin object.
         
-        Movie movie = movies.get(i);
-        MovieBin movieBin = toMovieBin(movie);
+       
+        MovieBin movieBin = moviesBin.get(i);
 
         //This is just to show the process for the first movie
         if (i == 0) {
             cout << "This process is repeated for each movie in the list" << endl;
             cout << "Writing movie: " << i << endl;
             cout << "Getting movie from list" << endl << endl;
-            printMovie(movie);
+            printMovie(toMovie(movieBin));
             cout << "Converting movie to movie bin" << endl ;
             printMovieBin(movieBin);
             cout << "Note that the title is a char array" 
@@ -197,7 +199,7 @@ bool writeFile(string fileName, List<Movie> movies, unsigned int mode = ios::out
 }
 
 
-MovieBin2 readFileWrongStruct(string fileName, unsigned int mode = ios::in) {
+MovieBin2 readFileWrongStruct(string fileName, unsigned int mode = ios::in | ios::binary) {
     // Create a file stream object.
     fstream file;
 

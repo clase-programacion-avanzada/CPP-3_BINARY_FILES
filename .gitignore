@@ -13,6 +13,8 @@
 0_how_binary_files_work
 1_how_binary_files_writing_reading
 2_binary_files_movies
+3_binary_files_movies_explanation
+4_binary_files_reading_writing_without_explanation
 
 libs/BinaryFileHandler.h
 
