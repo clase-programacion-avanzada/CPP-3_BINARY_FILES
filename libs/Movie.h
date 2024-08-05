@@ -32,10 +32,10 @@ struct MovieBin {
 };
 
 struct Movie{
-    int id;
-    int year;
-    int rating;
-    string title;
+    int id; //4 bytes
+    int year; //4 bytes
+    int rating; //4 bytes
+    string title; // Depende
 
     Movie() {
         id = 0;
