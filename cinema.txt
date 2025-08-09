@@ -1,0 +1,15 @@
+Cinema_1
+3
+Sala_1
+2
+Interstellar | 13:00
+Inception | 17:00
+Sala_2
+2
+The Dark Knight | 16:00
+The Matrix | 18:00
+Sala_3
+3
+The Godfather | 14:00
+Pulp Fiction | 16:00
+The Shawshank Redemption | 19:00
