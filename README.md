@@ -88,18 +88,8 @@ g++ -g 0_how_binary_files_work.cpp -o 0_how_binary_files_work
 ./0_how_binary_files_work
 ```
 
-## Conceptos Clave Aprendidos
+## Referencias y Recursos Adicionales
 
-1. **Operaciones básicas con archivos binarios**:
-   - `fstream` con modos `ios::binary`
-   - `write()` y `read()` para estructuras completas
-   - Manejo de punteros de archivo
+### 📖 **Documentación Oficial**
 
-2. **Estructuras de datos en C++**:
-   - Uso de `struct` para organizar datos relacionados
-   - Arrays de tamaño fijo
-
-3. **Gestión de memoria**:
-   - Tamaños fijos para evitar problemas de memoria dinámica
-   - Alineación de datos en archivos binarios
-
+- [Binary File Handling in C++: A Beginner’s Guide](https://dev.to/alen_pythonista_bb/binary-file-handling-in-c-a-beginners-guide-148od) [Artículo]
